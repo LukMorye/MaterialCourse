@@ -1,6 +1,7 @@
-package ru.gb.vtitov.materialcourse;
+package ru.gb.vtitov.materialcourseapp;
 
 import android.content.Context;
+
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -16,11 +17,11 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+	@Test
+	public void useAppContext() {
+		// Context of the app under test.
+		Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("ru.gb.vtitov.materialcourse", appContext.getPackageName());
-    }
+		assertEquals("ru.gb.vtitov.materialcourseapp", appContext.getPackageName());
+	}
 }

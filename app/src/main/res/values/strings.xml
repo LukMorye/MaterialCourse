@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">MaterialCourse</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">MaterialCourseApp</string>
+    <string name="title_home">Person</string>
+    <string name="title_dashboard">Position</string>
+    <string name="title_notifications">More</string>
+
+
 </resources>
