@@ -7,10 +7,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import ru.gb.vtitov.materialcourseapp.R;
 
+import android.transition.ArcMotion;
+import android.transition.ChangeBounds;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -22,16 +27,19 @@ import android.widget.TextView;
  * Use the {@link PersonFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class PersonFragment extends Fragment {
 
 	/* Constants params */
 	private static final String TITLE_PARAM = "title";
 	/* UI Elements */
-	TextView mTitleText;
+	private TextView mTitleText;
+	private Button mButton;
+
 	/* Params */
 	private String mTitle;
 	/* Listeners */
-
+	PersonFragment.OnFragmentInteractionListener mListener;
 
 	/* Implementation */
 	public PersonFragment() {
@@ -64,19 +72,33 @@ public class PersonFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 													 Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_person, container, false);
-	}
 
-	@Override
-	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
+		View view = inflater.inflate(R.layout.fragment_person, container, false);
 		initView(view);
+		return view;
 	}
 
 	private void initView(View view) {
 		mTitleText = view.findViewById(R.id.person_title);
 		mTitleText.setText(mTitle);
+		mButton = view.findViewById(R.id.person_share_button);
+		mButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Fragment fragment = mListener.defineSecondFragment();
+				ChangeBounds changeBounds = new ChangeBounds();
+				changeBounds.setPathMotion(new ArcMotion());
+				changeBounds.setDuration(300);
+				changeBounds.setInterpolator(new OvershootInterpolator(1.5f));
+				fragment.setSharedElementEnterTransition(changeBounds);
+				getFragmentManager()
+								.beginTransaction()
+								.replace(R.id.main_content, fragment)
+								.addToBackStack(this.getClass().getName())
+								.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out)
+								.addSharedElement(mButton, getString(R.string.share_element_name));
+			}
+		});
 	}
 
 
@@ -84,7 +106,12 @@ public class PersonFragment extends Fragment {
 	@Override
 	public void onAttach(Context context) {
 		super.onAttach(context);
-
+		if (context instanceof PersonFragment.OnFragmentInteractionListener) {
+			mListener = (PersonFragment.OnFragmentInteractionListener) context;
+		} else {
+			throw new RuntimeException(context.toString()
+							+ " must implement OnFragmentInteractionListener");
+		}
 	}
 
 	@Override
@@ -103,7 +130,6 @@ public class PersonFragment extends Fragment {
 	 * >Communicating with Other Fragments</a> for more information.
 	 */
 	public interface OnFragmentInteractionListener {
-		// TODO: Update argument type and name
-		void onFragmentInteraction(Uri uri);
+		Fragment defineSecondFragment();
 	}
 }

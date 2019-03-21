@@ -8,21 +8,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import ru.gb.vtitov.materialcourseapp.R;
 
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+				implements PersonFragment.OnFragmentInteractionListener {
 
-	private  PersonFragment personFragment;
-	private  PositionFragment positionFragment;
-	private  MoreFragment moreFragment;
+	private PersonFragment personFragment;
+	private PositionFragment positionFragment;
+	private MoreFragment moreFragment;
 	private  TextView badgeView;
 	private  Timer badgeTimer;
 	private  TimerTask timerTask;
@@ -83,8 +83,15 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void showFragment(Fragment fragment) {
-		getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+		getSupportFragmentManager()
+						.beginTransaction()
+						.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
 						.show(fragment).commit();
+	}
+
+	@Override
+	public Fragment defineSecondFragment() {
+		return moreFragment;
 	}
 
 	private void activateNotificationBadge() {
