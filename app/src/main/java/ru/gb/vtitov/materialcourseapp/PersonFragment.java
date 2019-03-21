@@ -1,13 +1,9 @@
 package ru.gb.vtitov.materialcourseapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import ru.gb.vtitov.materialcourseapp.R;
 
 import android.transition.ArcMotion;
 import android.transition.ChangeBounds;
@@ -15,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -34,7 +30,7 @@ public class PersonFragment extends Fragment {
 	private static final String TITLE_PARAM = "title";
 	/* UI Elements */
 	private TextView mTitleText;
-	private Button mButton;
+	private ImageView mImageView;
 
 	/* Params */
 	private String mTitle;
@@ -81,22 +77,23 @@ public class PersonFragment extends Fragment {
 	private void initView(View view) {
 		mTitleText = view.findViewById(R.id.person_title);
 		mTitleText.setText(mTitle);
-		mButton = view.findViewById(R.id.person_share_button);
-		mButton.setOnClickListener(new View.OnClickListener() {
+		mImageView = view.findViewById(R.id.person_share_button);
+		mImageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Fragment fragment = mListener.defineSecondFragment();
 				ChangeBounds changeBounds = new ChangeBounds();
 				changeBounds.setPathMotion(new ArcMotion());
-				changeBounds.setDuration(300);
+				changeBounds.setDuration(2000);
 				changeBounds.setInterpolator(new OvershootInterpolator(1.5f));
 				fragment.setSharedElementEnterTransition(changeBounds);
 				getFragmentManager()
 								.beginTransaction()
 								.replace(R.id.main_content, fragment)
 								.addToBackStack(this.getClass().getName())
-								.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out)
-								.addSharedElement(mButton, getString(R.string.share_element_name));
+								.setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+								.addSharedElement(mImageView, getString(R.string.share_element_name))
+						.commit();
 			}
 		});
 	}

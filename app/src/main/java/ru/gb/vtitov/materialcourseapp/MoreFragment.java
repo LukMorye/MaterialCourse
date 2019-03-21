@@ -4,16 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import ru.gb.vtitov.materialcourseapp.R;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 
 /**
@@ -29,7 +26,7 @@ public class MoreFragment extends Fragment {
 	/* Constants params */
 	private static final String TITLE_PARAM = "title";
 	/* UI Elements */
-	Button mButton;
+	ImageView mImageView;
 	/* Params */
 	private String mTitle;
 
@@ -71,7 +68,7 @@ public class MoreFragment extends Fragment {
 	}
 
 	private void initView(View view) {
-		mButton = view.findViewById(R.id.person_share_button);
+		mImageView = view.findViewById(R.id.person_share_button);
 	}
 
 	@Override

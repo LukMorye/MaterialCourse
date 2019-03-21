@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MoreFragment">
-    <Button
+    <ImageView
         android:id="@+id/person_share_button"
         android:transitionName="person_share_button"
         android:layout_width="140dp"
