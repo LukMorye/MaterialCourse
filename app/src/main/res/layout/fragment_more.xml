@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MoreFragment">
-    <TextView
-        android:id="@+id/more_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:text="More fragment" />
+    <Button
+        android:id="@+id/person_share_button"
+        android:transitionName="person_share_button"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/shape_oval_solid"/>
 
-</FrameLayout>
+</RelativeLayout>

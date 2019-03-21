@@ -3,6 +3,12 @@
     <string name="title_home">Person</string>
     <string name="title_dashboard">Position</string>
     <string name="title_notifications">More</string>
+    <string name="hint_your_email">Your email</string>
+    <string name="hint_password">Password</string>
+    <string name="common_enter">Enter</string>
+
+
+    <string name="share_element_name">Just Test</string>
 
 
 </resources>
