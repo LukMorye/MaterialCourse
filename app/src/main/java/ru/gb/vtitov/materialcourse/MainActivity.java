@@ -1,4 +1,4 @@
-package ru.gb.vtitov.materialcourseapp;
+package ru.gb.vtitov.materialcourse;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import ru.gb.vtitov.materialcourseapp.R;
+import ru.gb.vtitov.materialcourse.R;
 
 import android.view.MenuItem;
 import android.view.View;
@@ -32,20 +32,20 @@ public class MainActivity extends AppCompatActivity
 
 		@Override
 		public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-			switch (item.getItemId()) {
-				case R.id.navigation_person:
-					switchToFragment(personFragment);
-					activateNotificationBadge();
-					return true;
-				case R.id.navigation_position:
-					activateNotificationBadge();
-					switchToFragment(positionFragment);
-					return true;
-				case R.id.navigation_more:
-					switchToFragment(moreFragment);
-					stopNotifications();
-					return true;
-			}
+//			switch (item.getItemId()) {
+//				case R.id.navigation_person:
+//					switchToFragment(personFragment);
+//					activateNotificationBadge();
+//					return true;
+//				case R.id.navigation_position:
+//					activateNotificationBadge();
+//					switchToFragment(positionFragment);
+//					return true;
+//				case R.id.navigation_more:
+//					switchToFragment(moreFragment);
+//					stopNotifications();
+//					return true;
+//			}
 			return false;
 		}
 	};

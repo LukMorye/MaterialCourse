@@ -1,4 +1,4 @@
-package ru.gb.vtitov.materialcourseapp;
+package ru.gb.vtitov.materialcourse;
 
 
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ru.gb.vtitov.materialcourseapp.R;
+import ru.gb.vtitov.materialcourse.R;
 
 /**
  * A simple {@link Fragment} subclass.

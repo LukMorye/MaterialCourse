@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PositionFragment">
-    <TextView
-        android:id="@+id/position_title"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/position_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:text="This is position fragment" />
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

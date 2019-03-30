@@ -1,4 +1,4 @@
-package ru.gb.vtitov.materialcourseapp;
+package ru.gb.vtitov.materialcourse;
 
 import org.junit.Test;
 

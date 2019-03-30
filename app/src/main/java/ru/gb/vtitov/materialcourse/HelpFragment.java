@@ -1,4 +1,4 @@
-package ru.gb.vtitov.materialcourseapp;
+package ru.gb.vtitov.materialcourse;
 
 import android.content.Context;
 import android.net.Uri;

@@ -1,4 +1,4 @@
-package ru.gb.vtitov.materialcourseapp;
+package ru.gb.vtitov.materialcourse;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,12 +7,16 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import ru.gb.vtitov.materialcourseapp.R;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import ru.gb.vtitov.materialcourse.adapters.PositionAdapter;
+import ru.gb.vtitov.materialcourse.models.PositionModel;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -23,14 +27,15 @@ import android.widget.TextView;
  * Use the {@link PositionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PositionFragment extends Fragment {
+public class PositionFragment extends Fragment implements PositionPresenterViewInterface {
 	/* Constants params */
 	private static final String TITLE_PARAM = "person";
 	/* UI Elements */
-	TextView mTitleText;
+	RecyclerView mRecyclerView;
+	/* Presenter */
+	PositionPresenter presenter;
 	/* Params */
 	private String mTitle;
-
 
 	/* Implementation */
 	public PositionFragment() {
@@ -71,14 +76,34 @@ public class PositionFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		setupDI();
 		initView(view);
 	}
 
-	private void initView(View view) {
-		mTitleText = view.findViewById(R.id.position_title);
-		mTitleText.setText(mTitle);
+	private void setupDI() {
+		presenter = new PositionPresenter(this);
+		PositionInteractor positionInteractor = new PositionInteractor(getContext());
+		presenter.setPositionInteractor(positionInteractor);
+
 	}
 
+	private void initView(View view) {
+		mRecyclerView = view.findViewById(R.id.position_recycler_view);
+		mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+	}
+
+	@Override
+	public void gotPositions(ArrayList<PositionModel> positions) {
+		PositionAdapter adapter = new PositionAdapter(positions);
+		mRecyclerView.setAdapter(adapter);
+		presenter.setAdapter(adapter);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		presenter.onAppear();
+	}
 
 	@Override
 	public void onAttach(Context context) {

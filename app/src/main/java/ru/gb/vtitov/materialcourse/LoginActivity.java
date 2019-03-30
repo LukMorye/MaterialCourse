@@ -1,8 +1,8 @@
-package ru.gb.vtitov.materialcourseapp;
+package ru.gb.vtitov.materialcourse;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import ru.gb.vtitov.materialcourseapp.R;
+import ru.gb.vtitov.materialcourse.R;
 
 import android.content.Intent;
 import android.os.Bundle;
